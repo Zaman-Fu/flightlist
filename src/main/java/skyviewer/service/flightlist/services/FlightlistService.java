@@ -1,6 +1,7 @@
 package skyviewer.service.flightlist.services;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import skyviewer.service.flightlist.entities.Flight;
 import skyviewer.service.flightlist.repositories.FlightlistRepository;
+import skyviewer.service.flightlist.util.IStringProperty;
 
 @Service
 public class FlightlistService {
@@ -21,12 +23,33 @@ public class FlightlistService {
 
 	public List<String> getAllOrigins() {
 		// TODO Auto-generated method stub
-		return repository.findAllOrigins();
+		System.out.println("Service layer called to get all origins");
+		List<IStringProperty> origins=repository.findAllOrigins();
+		List<String> originsString=new ArrayList<String>();
+		for(int i=0;i<origins.size();i++)
+		{
+			originsString.add(origins.get(i).getStringProperty());
+		}
+		return originsString;
+		//return repository.findAllOrigins();
 	}
 
 	public List<String> findDestinationsByOrigin(String origin) {
+		
+		List<IStringProperty> destinations=repository.findDestinationsByOrigin(origin);
+		List<String> destinationsString=new ArrayList<String>();
+		
+		for(int i=0;i<destinations.size();i++)
+		{
+			destinationsString.add(destinations.get(i).getStringProperty());
+		}
+		return destinationsString;
+		//return repository.findDestinationsByOrigin(origin);
+	}
+	
+	public List<Flight> findAllFlights() {
 		// TODO Auto-generated method stub
-		return repository.findDestinationsByOrigin(origin);
+		return repository.findAll();
 	}
 
 	public List<Flight> findFlightsByRouteAndDate(Flight params) {
@@ -42,6 +65,8 @@ public class FlightlistService {
 		
 		return Pair.of(targetDate.minusDays(3),targetDate.plusDays(3));
 	}
+
+	
 	
 	
 	

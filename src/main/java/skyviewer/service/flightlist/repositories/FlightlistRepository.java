@@ -5,20 +5,26 @@ import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 import skyviewer.service.flightlist.entities.Flight;
+import skyviewer.service.flightlist.util.IStringProperty;
+
 
 public interface FlightlistRepository  extends JpaRepository<Flight,Long>{
 
+	/*@Query(
+			  value = "SELECT FLIGHT.ORIGIN  FROM FLIGHT GROUP BY FLIGHT.ORIGIN", 
+			  nativeQuery = true)//this native query does not help us with aggregation...
+			  
+			 List<String> findAllOrigins(); */
 	@Query(
-			  value = "SELECT ORGIN FROM FLIGHT GROUP BY ORIGIN", 
-			  nativeQuery = true)
-	List<String> findAllOrigins();
+			  value = "SELECT f.origin AS stringProperty FROM Flight as f GROUP BY f.origin")
+	List<IStringProperty> findAllOrigins();
 
 	@Query(
-			  value = "SELECT DESTINATION FROM FLIGHT WHERE ORIGIN = :origin GROUP BY ORIGIN" , 
-			  nativeQuery = true)
-	List<String> findDestinationsByOrigin(String origin);
+			  value = "SELECT f.destination AS stringProperty FROM Flight AS f WHERE f.origin = :origin GROUP BY f.destination" )
+	List<IStringProperty> findDestinationsByOrigin(@Param("origin") String origin);
 
 	@Query(
 			  value = "SELECT * FROM BANK_ACCOUNT WHERE ORIGIN = :origin "

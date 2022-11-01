@@ -21,9 +21,11 @@ public class PopulateFlightsCommandLineRunner implements CommandLineRunner {
 	public void run(String... args) throws Exception {
 
 		flightRepository.save(new Flight(1l,"Seville","New York",LocalDate.of(2022,11,10),LocalTime.of(12, 30),LocalTime.of(10, 20),0,true,900f,false));
-		flightRepository.save(new Flight(2l,"Madrid","New York",LocalDate.of(2022,11,10),LocalTime.of(12, 30),LocalTime.of(10, 20),0,true,950f,false));
-		flightRepository.save(new Flight(3l,"London","New York",LocalDate.of(2022,11,10),LocalTime.of(12, 30),LocalTime.of(10, 20),0,true,800f,false));
-		flightRepository.save(new Flight(4l,"Amsterdam","New York",LocalDate.of(2022,11,10),LocalTime.of(12, 30),LocalTime.of(10, 20),0,true,980f,true));
+		flightRepository.save(new Flight(2l,"Madrid","New York",LocalDate.of(2022,11,10),LocalTime.of(12, 30),LocalTime.of(10, 40),0,true,950f,false));
+		flightRepository.save(new Flight(3l,"London","New York",LocalDate.of(2022,11,10),LocalTime.of(12, 30),LocalTime.of(9, 20),0,true,800f,false));
+		flightRepository.save(new Flight(4l,"Amsterdam","New York",LocalDate.of(2022,11,10),LocalTime.of(12, 30),LocalTime.of(11, 20),0,true,980f,true));
 		flightRepository.save(new Flight(5l,"Paris","New York",LocalDate.of(2022,11,10),LocalTime.of(12, 30),LocalTime.of(10, 20),0,true,900f,false));
+		flightRepository.save(new Flight(6l,"Paris","New York",LocalDate.of(2022,11,12),LocalTime.of(11, 30),LocalTime.of(10, 20),0,true,900f,false));
+
 	}
 }
