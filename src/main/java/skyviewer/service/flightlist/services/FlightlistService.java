@@ -2,6 +2,11 @@ package skyviewer.service.flightlist.services;
 
 import java.time.Duration;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.temporal.ChronoUnit;
+
+import static java.time.temporal.ChronoUnit.DAYS;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -63,7 +68,8 @@ public class FlightlistService {
 	///The logic deciding on the date range for picking flights
 	private Pair<LocalDate,LocalDate> DateRange(LocalDate targetDate)
 	{
-		Long dayDiff=Duration.between(targetDate, LocalDate.now()).toDays();
+		//LocalDateTime targetDateTime=LocalDateTime.of(targetDate, LocalTime.now());
+		Long dayDiff=ChronoUnit.DAYS.between(LocalDate.now(), targetDate);
 		if(dayDiff<3)
 		{
 		    return Pair.of(targetDate.minusDays(dayDiff), targetDate.plusDays(4));
