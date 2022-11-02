@@ -27,10 +27,10 @@ public interface FlightlistRepository  extends JpaRepository<Flight,Long>{
 	List<IStringProperty> findDestinationsByOrigin(@Param("origin") String origin);
 
 	@Query(
-			  value = "SELECT * FROM BANK_ACCOUNT WHERE ORIGIN = :origin "
+			  value = "SELECT * FROM FLIGHT WHERE ORIGIN = :origin "
 			  		+ "AND DESTINATION = :destination "
-			  		+ "AND DEPARTURE_TIME > :first "
-			  		+ "AND DEPARTURE_TIME < :last", 
+			  		+ "AND DATE > :first "
+			  		+ "AND DATE < :last", 
 			  nativeQuery = true)
 	List<Flight> findByRouteAndDates(String origin, String destination, LocalDate first, LocalDate last);
 

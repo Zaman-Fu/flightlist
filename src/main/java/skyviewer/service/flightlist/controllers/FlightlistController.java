@@ -48,7 +48,7 @@ public class FlightlistController {
 	
 	
 	
-	@GetMapping("flights")
+	@GetMapping("flights/search")
 	public ResponseEntity<List<Flight>> GetFlightsByRouteAndDate(@RequestBody Flight searchParams)//Send an incomplete flight object then use service logic
 	{
 		
