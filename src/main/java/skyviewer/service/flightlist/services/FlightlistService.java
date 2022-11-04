@@ -57,6 +57,11 @@ public class FlightlistService {
 		// TODO Auto-generated method stub
 		return repository.findAll();
 	}
+	
+	public Flight createNewFlight(Flight newFlight) {
+		// TODO Auto-generated method stub
+		return repository.save(newFlight);
+	}
 
 	public List<Flight> findFlightsByRouteAndDate(Flight params) {
 		// TODO Auto-generated method stub
@@ -77,6 +82,8 @@ public class FlightlistService {
 		
 		return Pair.of(targetDate.minusDays(3),targetDate.plusDays(3));
 	}
+
+	
 
 	
 	
